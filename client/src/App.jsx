@@ -21,7 +21,7 @@ function App() {
   );
 
   return (
-    <NextThemesProvider attribute="class" defaultTheme="dark">
+    <NextThemesProvider attribute="class" defaultTheme="light">
       <RouterProvider router={router} />
     </NextThemesProvider>
   );

@@ -59,19 +59,18 @@ const ActivityChart = () => {
 
 export default ActivityChart;
 
-import React from "react";
-
 // Custom bar shape with rounded corners
 const RoundedBar = (props) => {
   const { fill, x, y, width, height } = props;
-  const radius = 10; // Adjust this to control the roundness
+  const radius = 5; // Adjust this to control the roundness
+  const margin = 2;
 
   return (
     <rect
       x={x}
-      y={y}
+      y={y + margin}
       width={width}
-      height={height}
+      height={height - 2 * margin}
       fill={fill}
       rx={radius} // Horizontal radius for rounded corners
       ry={radius} // Vertical radius for rounded corners
@@ -95,7 +94,7 @@ class Chart extends PureComponent {
             left: 0,
             bottom: 0,
           }}
-          barSize={10} // Adjust bar width
+          barSize={8} // Adjust bar width
           barGap={5} // Adjust the gap between bars
           barCategoryGap="20%" // Adjust the gap between categories
           className=""
@@ -103,16 +102,28 @@ class Chart extends PureComponent {
           {/* Removed CartesianGrid to eliminate the background grid */}
           <XAxis dataKey="name" style={{ fontSize: "12px" }} />
           {/* Smaller font size */}
-          <YAxis style={{ fontSize: "12px" }} /> {/* Smaller font size */}
+          <YAxis style={{ fontSize: "12px" }} width={30} />{" "}
+          {/* Smaller font size */}
           <Tooltip wrapperClassName="text-small" />
           <Legend
             wrapperStyle={{ fontSize: "12px", marginBottom: "5px" }}
             verticalAlign="top"
             align="right"
+            iconSize={5}
           />
           {/* Smaller font size */}
-          <Bar dataKey="exercise" stackId="a" fill="#ff4d4d" />
-          <Bar dataKey="rest" stackId="a" fill="#4d79ff" />
+          <Bar
+            dataKey="exercise"
+            stackId="a"
+            fill="#ff4d4d"
+            shape={<RoundedBar />}
+          />
+          <Bar
+            dataKey="rest"
+            stackId="a"
+            fill="#4d79ff"
+            shape={<RoundedBar />}
+          />
         </BarChart>
       </ResponsiveContainer>
     );
