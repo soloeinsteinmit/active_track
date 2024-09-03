@@ -12,48 +12,42 @@ import {
 
 const data = [
   {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    name: "Sun",
+    exercise: 50, // derived from pv
+    rest: 70, // derived from uv
   },
   {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    name: "Mon",
+    exercise: 30,
+    rest: 90,
   },
   {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    name: "Tue",
+    exercise: 80,
+    rest: 40,
   },
   {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
+    name: "Wed",
+    exercise: 60,
+    rest: 60,
   },
   {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
+    name: "Thur",
+    exercise: 70,
+    rest: 50,
   },
   {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
+    name: "Fri",
+    exercise: 90,
+    rest: 30,
   },
   {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
+    name: "Sat",
+    exercise: 40,
+    rest: 80,
   },
 ];
+
 const ActivityChart = () => {
   return (
     <div className="flex flex-col shadow-small h-52 w-96 rounded-medium p-5">
@@ -64,6 +58,27 @@ const ActivityChart = () => {
 };
 
 export default ActivityChart;
+
+import React from "react";
+
+// Custom bar shape with rounded corners
+const RoundedBar = (props) => {
+  const { fill, x, y, width, height } = props;
+  const radius = 10; // Adjust this to control the roundness
+
+  return (
+    <rect
+      x={x}
+      y={y}
+      width={width}
+      height={height}
+      fill={fill}
+      rx={radius} // Horizontal radius for rounded corners
+      ry={radius} // Vertical radius for rounded corners
+    />
+  );
+};
+
 class Chart extends PureComponent {
   static demoUrl = "https://codesandbox.io/p/sandbox/stacked-bar-chart-7fwfgj";
 
@@ -71,23 +86,33 @@ class Chart extends PureComponent {
     return (
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          width={500}
+          width={"100%"}
           height={300}
           data={data}
           margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 5,
+            top: 0,
+            right: 0,
+            left: 0,
+            bottom: 0,
           }}
+          barSize={10} // Adjust bar width
+          barGap={5} // Adjust the gap between bars
+          barCategoryGap="20%" // Adjust the gap between categories
+          className=""
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-          <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+          {/* Removed CartesianGrid to eliminate the background grid */}
+          <XAxis dataKey="name" style={{ fontSize: "12px" }} />
+          {/* Smaller font size */}
+          <YAxis style={{ fontSize: "12px" }} /> {/* Smaller font size */}
+          <Tooltip wrapperClassName="text-small" />
+          <Legend
+            wrapperStyle={{ fontSize: "12px", marginBottom: "5px" }}
+            verticalAlign="top"
+            align="right"
+          />
+          {/* Smaller font size */}
+          <Bar dataKey="exercise" stackId="a" fill="#ff4d4d" />
+          <Bar dataKey="rest" stackId="a" fill="#4d79ff" />
         </BarChart>
       </ResponsiveContainer>
     );
