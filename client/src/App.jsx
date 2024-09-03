@@ -1,4 +1,4 @@
-import "../src/";
+import "./App.css";
 import {
   Route,
   RouterProvider,
