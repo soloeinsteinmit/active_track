@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import OutletContainer from "./layout/OutletContainer";
 import Dashboard from "./pages/Dashboard";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 function App() {
   const router = createBrowserRouter(
@@ -19,7 +20,11 @@ function App() {
     )
   );
 
-  return <RouterProvider router={router} />;
+  return (
+    <NextThemesProvider attribute="class" defaultTheme="dark">
+      <RouterProvider router={router} />
+    </NextThemesProvider>
+  );
 }
 
 export default App;

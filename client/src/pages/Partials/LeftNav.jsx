@@ -11,7 +11,7 @@ const LeftNav = () => {
       <div className="text-primary text-lg font-extrabold bg-white p-2 rounded-medium w-10 h-10 flex items-center justify-center ">
         <span className="pt-1">Fit</span>
       </div>
-      // TODO: OPTIMIZE BUTTON CODE
+      {/*// TODO: OPTIMIZE BUTTON CODE */}
       <div className="flex flex-col gap-3 ">
         <Button
           isIconOnly
