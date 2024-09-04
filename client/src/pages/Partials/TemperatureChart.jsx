@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { CustomTooltip } from "../../components/ActivityChart";
 
 // Custom bar shape with rounded corners
 const RoundedBar = (props) => {
@@ -28,35 +29,6 @@ const RoundedBar = (props) => {
     />
   );
 };
-export const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div
-        className="custom-tooltip"
-        style={{
-          backgroundColor: "hsl(var(--nextui-content4))",
-          border: "1px solid #ccc",
-          padding: "10px",
-          borderRadius: "5px",
-          boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <p
-          className="label"
-          style={{ fontWeight: "bold", fontSize: "12px" }}
-        >{`${label}`}</p>
-        {payload.map((entry, index) => (
-          <p
-            key={index}
-            style={{ color: entry.color, margin: 0, fontSize: "12px" }}
-          >{`${entry.name}: ${entry.value}`}</p>
-        ))}
-      </div>
-    );
-  }
-
-  return null;
-};
 
 class Chart extends PureComponent {
   render() {
@@ -69,23 +41,22 @@ class Chart extends PureComponent {
           height={300}
           data={data}
           margin={{
-            top: 0,
-            right: 0,
-            left: 0,
-            bottom: 0,
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
           }}
-          barSize={8} // Adjust bar width
+          barSize={10} // Adjust bar width
           barGap={5} // Adjust the gap between bars
           barCategoryGap="20%" // Adjust the gap between categories
         >
-          <XAxis dataKey="name" style={{ fontSize: "12px" }} />
-          <YAxis style={{ fontSize: "12px" }} width={30} />
+          <XAxis dataKey="name" />
+          <YAxis width={30} />
           <Tooltip wrapperClassName="text-small" content={<CustomTooltip />} />
           <Legend
             wrapperStyle={{ fontSize: "12px", marginBottom: "5px" }}
             verticalAlign="top"
             align="right"
-            iconSize={5}
           />
           {bars.map((bar, index) => (
             <Bar
@@ -102,13 +73,12 @@ class Chart extends PureComponent {
   }
 }
 
-const ActivityChart = ({ data, bars }) => {
+const TemperatureChart = ({ data, bars }) => {
   return (
-    <div className="flex flex-col shadow-small h-52 w-96 rounded-medium p-5">
-      <span className="text-sm font-bold">Activity</span>
+    <div className="h-[250px]">
       <Chart data={data} bars={bars} />
     </div>
   );
 };
 
-export default ActivityChart;
+export default TemperatureChart;

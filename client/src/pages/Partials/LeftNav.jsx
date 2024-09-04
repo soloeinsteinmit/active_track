@@ -3,7 +3,8 @@ import React from "react";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BsFillBarChartLineFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
-import { HiCalendarDays } from "react-icons/hi2";
+import { FaRobot } from "react-icons/fa6";
+import { TbHealthRecognition } from "react-icons/tb";
 import NavLinkCard from "../../components/NavLinkCard";
 
 const LeftNav = () => {
@@ -14,10 +15,23 @@ const LeftNav = () => {
       </div>
       {/*// TODO: OPTIMIZE BUTTON CODE */}
       <div className="flex flex-col gap-8">
-        <NavLinkCard icon={<TbLayoutDashboardFilled />} to="/" />
-        <NavLinkCard icon={<BsFillBarChartLineFill />} to="/data" />
-        <NavLinkCard icon={<HiCalendarDays />} to="/check_vitals" />
-        <NavLinkCard icon={<IoSettings />} to="/2" />
+        <NavLinkCard
+          icon={<TbLayoutDashboardFilled />}
+          to="/"
+          tooltip="Dashboard"
+        />
+        <NavLinkCard
+          icon={<BsFillBarChartLineFill />}
+          to="/data"
+          tooltip="Previous Data"
+        />
+        <NavLinkCard
+          icon={<TbHealthRecognition className="text-xl" />}
+          to="/check_vitals"
+          tooltip="Check Vitals"
+        />
+        <NavLinkCard icon={<FaRobot />} to="/3" tooltip="FitFlow AI" />
+        {/* <NavLinkCard icon={<IoSettings />} to="/2" /> */}
       </div>
     </div>
   );

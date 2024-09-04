@@ -9,7 +9,7 @@ import OutletContainer from "./layout/OutletContainer";
 import Dashboard from "./pages/Dashboard";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import PreviousData from "./pages/PreviousData";
-import CheckVitals from "./pages/Partials/CheckVitals";
+import CheckVitals from "./pages/CheckVitals";
 
 function App() {
   const router = createBrowserRouter(

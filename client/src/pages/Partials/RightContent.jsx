@@ -8,7 +8,7 @@ const RightContent = () => {
     <div className="shadow-small rounded-medium  min-w-72 p-5 flex flex-col items-baseline gap-5">
       <UserProfile />
       <CheckboxGroup
-        label="To-do-List"
+        label="FitFlow AI Suggest Tasks"
         // value={groupSelected}
         // onChange={setGroupSelected}
         classNames={{
