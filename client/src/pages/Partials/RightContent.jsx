@@ -5,7 +5,7 @@ import { CustomCheckbox } from "../../components/CustomCheckbox";
 
 const RightContent = () => {
   return (
-    <div className="shadow-small rounded-medium  min-w-72 p-5 flex flex-col gap-5">
+    <div className="shadow-small rounded-medium  min-w-72 p-5 flex flex-col items-baseline gap-5">
       <UserProfile />
       <CheckboxGroup
         label="To-do-List"

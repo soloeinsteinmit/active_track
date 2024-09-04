@@ -4,6 +4,7 @@ import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { BsFillBarChartLineFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import { HiCalendarDays } from "react-icons/hi2";
+import NavLinkCard from "../../components/NavLinkCard";
 
 const LeftNav = () => {
   return (
@@ -12,43 +13,11 @@ const LeftNav = () => {
         <span className="pt-1">Fit</span>
       </div>
       {/*// TODO: OPTIMIZE BUTTON CODE */}
-      <div className="flex flex-col gap-3 ">
-        <Button
-          isIconOnly
-          color="warning"
-          className="text-white text-lg"
-          variant="light"
-          aria-label="Dashboard icon"
-        >
-          <TbLayoutDashboardFilled />
-        </Button>
-        <Button
-          isIconOnly
-          color="warning"
-          className="text-white text-lg"
-          variant="light"
-          aria-label="Dashboard icon"
-        >
-          <BsFillBarChartLineFill />
-        </Button>
-        <Button
-          isIconOnly
-          color="warning"
-          className="text-white text-lg"
-          variant="light"
-          aria-label="Dashboard icon"
-        >
-          <HiCalendarDays />
-        </Button>
-        <Button
-          isIconOnly
-          color="warning"
-          className="text-white text-lg"
-          variant="light"
-          aria-label="Dashboard icon"
-        >
-          <IoSettings />
-        </Button>
+      <div className="flex flex-col gap-8">
+        <NavLinkCard icon={<TbLayoutDashboardFilled />} to="/" />
+        <NavLinkCard icon={<BsFillBarChartLineFill />} to="/data" />
+        <NavLinkCard icon={<HiCalendarDays />} to="/check_vitals" />
+        <NavLinkCard icon={<IoSettings />} to="/2" />
       </div>
     </div>
   );

@@ -6,14 +6,18 @@ const MapView = () => {
   return (
     <div
       className="shadow-small rounded-medium"
-      style={{ height: "250px", width: "100%", borderRadius: "10px" }}
+      style={{ height: "100%", width: "100%", borderRadius: "10px" }}
     >
       {/* <span className="text-5xl font-bold">MapView</span> */}
       <MapContainer
         center={[5.116622, -1.290954]}
         zoom={13}
         scrollWheelZoom={true}
-        style={{ height: "100%", width: "100%", borderRadius: "10px" }}
+        style={{
+          height: "100%",
+          width: "100%",
+          borderRadius: "10px",
+        }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
