@@ -9,27 +9,28 @@ import {
   Pagination,
   getKeyValue,
 } from "@nextui-org/react";
-import { users } from "../assets/data";
+import { fitnessData } from "../assets/data";
 import TopContent from "../components/TopContent";
 
 const PreviousData = () => {
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 10;
 
-  const pages = Math.ceil(users.length / rowsPerPage);
+  const pages = Math.ceil(fitnessData.length / rowsPerPage);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
 
-    return users.slice(start, end);
-  }, [page, users]);
+    return fitnessData.slice(start, end);
+  }, [page, fitnessData]);
+
   return (
     <div className="max-w-[1000px] w-full mx-auto my-5 flex flex-col gap-5">
       <TopContent />
       <p className="text-2xl font-bold">Previous Data</p>
       <Table
-        aria-label="Example table with client side pagination"
+        aria-label="Fitness data table with client side pagination"
         isStriped
         isVirtualized
         color="primary"
@@ -51,13 +52,14 @@ const PreviousData = () => {
         }}
       >
         <TableHeader>
-          <TableColumn key="name">NAME</TableColumn>
-          <TableColumn key="role">ROLE</TableColumn>
-          <TableColumn key="status">STATUS</TableColumn>
+          <TableColumn key="dateTime">DAY, TIME</TableColumn>
+          <TableColumn key="heartBeat">HEART BEAT RATE (BPM)</TableColumn>
+          <TableColumn key="spo2">SPO2 (%)</TableColumn>
+          <TableColumn key="temperature">TEMPERATURE (°C)</TableColumn>
         </TableHeader>
         <TableBody items={items}>
           {(item) => (
-            <TableRow key={item.name}>
+            <TableRow key={item.key}>
               {(columnKey) => (
                 <TableCell>{getKeyValue(item, columnKey)}</TableCell>
               )}

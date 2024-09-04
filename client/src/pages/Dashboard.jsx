@@ -5,6 +5,10 @@ import WeatherCard from "../components/WeatherCard";
 import MapView from "../components/MapView";
 import RightContent from "./Partials/RightContent";
 import ActivityChart from "../components/ActivityChart";
+import { LiaHeartbeatSolid } from "react-icons/lia";
+import { MdOutlineBloodtype } from "react-icons/md";
+import { TbTemperaturePlus } from "react-icons/tb";
+import { icon } from "leaflet";
 
 const data = [
   { name: "Sun", exercise: 50, rest: 70 },
@@ -21,15 +25,42 @@ const bars = [
   { dataKey: "exercise", color: "#ff4d4d" },
   { dataKey: "rest", color: "#4d79ff" },
 ];
+
+const fitnessData = [
+  {
+    fitnessFeature: "Heart Rate",
+    fitnessMeasure: "BPM",
+    fitnessValue: 89,
+    icon: <LiaHeartbeatSolid />,
+  },
+  {
+    fitnessFeature: "SPO2",
+    fitnessMeasure: "%",
+    fitnessValue: 89,
+    icon: <MdOutlineBloodtype />,
+  },
+  {
+    fitnessFeature: "Temperature",
+    fitnessMeasure: "°C",
+    fitnessValue: 89,
+    icon: <TbTemperaturePlus />,
+  },
+];
 const Dashboard = () => {
   return (
     <div className="flex justify-between gap-5 w-full max-w-[1100px] mx-auto py-5 ">
       <div className="w-full flex flex-col gap-5">
         <TopContent />
         <div className="flex justify-between">
-          <FitnessCard />
-          <FitnessCard />
-          <FitnessCard />
+          {fitnessData.map((data, index) => (
+            <FitnessCard
+              key={index}
+              fitnessFeature={data.fitnessFeature}
+              fitnessMeasure={data.fitnessMeasure}
+              fitnessValue={data.fitnessValue}
+              icon={data.icon}
+            />
+          ))}
         </div>
         {/* graph */}
         {/* weather */}
