@@ -11,8 +11,11 @@ import {
 } from "@nextui-org/react";
 import { fitnessData } from "../assets/data";
 import TopContent from "../components/TopContent";
+import { useSelector } from "react-redux";
 
 const PreviousData = () => {
+  const userVitals = useSelector((state) => state.userVitals.vitalsInfo);
+  console.log("hgewvghesvhes", userVitals);
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 10;
 

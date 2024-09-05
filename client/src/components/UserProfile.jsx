@@ -1,13 +1,7 @@
 import { Avatar, Chip } from "@nextui-org/react";
 import React from "react";
 
-const UserProfile = ({
-  name = "Lorem Ipsum",
-  email = "lorem@gmail.com",
-  height = "184 cm",
-  weight = "65 kg",
-  age = "38",
-}) => {
+const UserProfile = ({ user }) => {
   return (
     <div className="flex flex-col gap-2 w-full items-center justify-center">
       <Avatar
@@ -20,26 +14,28 @@ const UserProfile = ({
         color="primary"
       />
       <p className="flex flex-col items-center">
-        <span className="text-lg font-bold text-primary-800">{name}</span>
-        <span className="text-sm font-semibold text-primary-300">{email}</span>
+        <span className="text-lg font-bold text-primary-800">{user.name}</span>
+        <span className="text-sm font-semibold text-primary-300">
+          {user.email}
+        </span>
       </p>
       <div className="flex w-full justify-evenly">
         <div className="flex flex-col gap-1 items-center justify-center">
           <span className="text-xs font-bold">Height</span>
           <div className="flex items-center justify-center bg-primary w-16 rounded-small text-sm text-white py-1">
-            {height}
+            {user.height}
           </div>
         </div>
         <div className="flex flex-col gap-1 items-center justify-center">
           <span className="text-xs font-bold">Weight</span>
           <div className="flex items-center justify-center bg-primary w-16 rounded-small text-sm text-white py-1">
-            {weight}
+            {user.weight}
           </div>
         </div>
         <div className="flex flex-col gap-1 items-center justify-center">
           <span className="text-xs font-bold">Age</span>
           <div className="flex items-center justify-center bg-primary w-16 rounded-small text-sm text-white py-1">
-            {age}
+            {user.age}
           </div>
         </div>
       </div>

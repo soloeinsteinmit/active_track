@@ -2,11 +2,14 @@ import React from "react";
 import UserProfile from "../../components/UserProfile";
 import { CheckboxGroup } from "@nextui-org/react";
 import { CustomCheckbox } from "../../components/CustomCheckbox";
+import { useSelector } from "react-redux";
 
 const RightContent = () => {
+  const userInfo = useSelector((state) => state.user.userInfo);
+
   return (
     <div className="shadow-small rounded-medium  min-w-72 p-5 flex flex-col items-baseline gap-5">
-      <UserProfile />
+      <UserProfile user={userInfo} />
       <CheckboxGroup
         label="FitFlow AI Suggest Tasks"
         // value={groupSelected}
