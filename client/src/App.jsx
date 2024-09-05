@@ -12,18 +12,24 @@ import PreviousData from "./pages/PreviousData";
 import CheckVitals from "./pages/CheckVitals";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import RootLayout from "./layout/RootLayout";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<OutletContainer />}>
-        <Route index element={<Dashboard />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="data" element={<PreviousData />} />
-        <Route path="check_vitals" element={<CheckVitals />} />
-        <Route path="register" element={<Register />} />
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<Login />} />
         <Route path="login" element={<Login />} />
-        <Route path="logout" element={<Login />} />
+
+        <Route path="register" element={<Register />} />
+
+        <Route path="dashboard" element={<OutletContainer />}>
+          <Route index element={<Dashboard />} />
+
+          <Route path="data" element={<PreviousData />} />
+          <Route path="check_vitals" element={<CheckVitals />} />
+        </Route>
+
         {/* <Route path="message_assistu" element={<ChatScreen />} /> */}
       </Route>
     )

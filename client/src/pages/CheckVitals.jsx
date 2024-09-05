@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TopContent from "../components/TopContent";
 import heart_img from "../assets/heart_gif.gif";
 import temp from "../assets/temp.webp";
@@ -9,6 +9,7 @@ import { TbTemperaturePlus } from "react-icons/tb";
 import CustomLineChart from "./Partials/LineChart";
 import TemperatureChart from "./Partials/TemperatureChart";
 import PersonalDetails from "./Partials/PersonalDetails";
+import axios from "axios";
 
 const data = [
   { name: "Mon", SPO2: 95, "Heart Rate": 75 },
@@ -42,6 +43,26 @@ const tempBars = [
 ];
 
 const CheckVitals = () => {
+  const [sensorData, setSensorData] = useState({
+    heartRate: "---",
+    spo2: "---",
+    temperature: "---",
+  });
+  const [loading, setLoading] = useState(true);
+
+  const handleImageClick = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:5000/api/vitals"); // Replace with your Flask endpoint
+
+      setSensorData(response.data);
+
+      // Handle the received data as needed
+    } catch (error) {
+      console.error("Error fetching vitals:", error);
+    }
+  };
+
+  console.log(sensorData);
   return (
     <div className="max-w-[1000px] w-full mx-auto my-5 flex flex-col gap-5">
       <TopContent />
@@ -54,7 +75,7 @@ const CheckVitals = () => {
               showArrow
               placement="right"
               content={
-                <div className="px-1 py-2">
+                <div className="px-1 py-">
                   <div className="text-small font-bold">Check Vitals</div>
                   <div className="text-tiny">
                     Press to check your Heart Rate & SPO2
@@ -62,16 +83,26 @@ const CheckVitals = () => {
                 </div>
               }
             >
-              <Image isZoomed src={heart_img} alt="" className="" />
+              <Image
+                isZoomed
+                src={heart_img}
+                alt=""
+                className=""
+                onClick={handleImageClick}
+              />
             </Tooltip>
             <HeartSensorReading
+              sensorReading={sensorData.heartRate}
               sensorMeasurement="BPM"
               sensorName="Heart Beat"
               subtitle="lorem ipsum dolor"
+              // sensorReading={sensorData.heartRate}
             />
             <HeartSensorReading
               icon={<MdOutlineBloodtype />}
               // addImage={true}
+              sensorReading={sensorData.spo2}
+              // sensorReading={data.spo2}
               sensorMeasurement="%"
               sensorName="SPo2"
               subtitle="lorem ipsum dolor"
@@ -95,6 +126,7 @@ const CheckVitals = () => {
             </Tooltip>
             <HeartSensorReading
               icon={<TbTemperaturePlus />}
+              sensorReading={sensorData.temperature}
               sensorMeasurement="°C"
               sensorName="Temperature"
               subtitle="lorem ipsum dolor"

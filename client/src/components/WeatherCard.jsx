@@ -10,7 +10,7 @@ import {
 import WeatherProperties from "./WeatherProperties";
 import { Spinner } from "@nextui-org/react";
 import axios from "axios";
-import { IoRainy, IoCloudy, IoSnow } from "react-icons/io5";
+import { IoRainy, IoCloudy, IoSnow, IoWarning } from "react-icons/io5";
 
 const WeatherCard = ({ location = "Location" }) => {
   const [weatherData, setWeatherData] = useState(null);
@@ -20,7 +20,7 @@ const WeatherCard = ({ location = "Location" }) => {
   const latitude = 5.116622; // Latitude
   const longitude = -1.290954; // Longitude
 
-  useEffect(() => {
+  /*   useEffect(() => {
     // Fetch weather data
     const fetchWeatherData = async () => {
       try {
@@ -33,17 +33,17 @@ const WeatherCard = ({ location = "Location" }) => {
         setLoading(false); // Stop loading
       } catch (error) {
         console.error("API Error:", error); // More detailed error logging
-        setError("Failed to fetch weather data. Please try again later."); // User-friendly error message
+        setError("Failed to fetch weather data. Please try again later."); 
         setLoading(false); // Stop loading even if there's an error
       }
     };
 
     fetchWeatherData(); // Call the function to fetch data when component mounts
-  }, []);
+  }, []); */
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-[380px]">
         <Spinner size="sm" />
         <p>Loading weather data...</p>
       </div>
@@ -51,20 +51,30 @@ const WeatherCard = ({ location = "Location" }) => {
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return (
+      <div className="flex flex-col items-center justify-center w[300px]">
+        <IoWarning />
+        <p>Error: {error}</p>
+      </div>
+    );
   }
 
   // Ensure weatherData is not null before using it
   if (!weatherData || !weatherData.main || !weatherData.wind) {
     return <p>No weather data available</p>;
   }
+
   const cityName = weatherData.name;
+
   // Determine the icon based on the weather condition
   const weatherIcon = {
     Rain: <IoRainy className="text-white text-6xl" />,
     Clouds: <IoCloudy className="text-white text-6xl" />,
     Snow: <IoSnow className="text-white text-6xl" />,
-  }[weatherData.weather[0].main] || <PiCloudFill />;
+  }[weatherData.weather[0].main] || (
+    <PiCloudFill className="text-white text-6xl" />
+  );
+
   const weatherProperties = [
     {
       icon: <PiThermometer />,
@@ -103,6 +113,7 @@ const WeatherCard = ({ location = "Location" }) => {
             <p className="font-bold text-primary text-large">{cityName}</p>
           </div>
         </div>
+
         <div className="bg-primary p-3 flex items-center justify-center rounded-medium">
           {/* <PiCloudFill className="text-white text-6xl" /> */}
           {weatherIcon}

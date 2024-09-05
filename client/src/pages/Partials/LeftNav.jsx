@@ -13,36 +13,36 @@ const LeftNav = () => {
     {
       label: "Dashboard",
       icon: <TbLayoutDashboardFilled />,
-      to: "/",
+      to: "/dashboard",
     },
     {
       label: "Previous Data",
       icon: <BsFillBarChartLineFill />,
-      to: "/data",
+      to: "/dashboard/data",
     },
     {
       label: "Check Vitals",
       icon: <TbHealthRecognition className="text-2xl" />,
-      to: "/check_vitals",
+      to: "/dashboard/check_vitals",
     },
     {
       label: "FitFlow AI",
       icon: <FaRobot className="text-2xl" />,
-      to: "/3",
+      to: "/ai_conversation",
     },
     // {
     //   label: "Settings",
     //   icon: <IoSettings />,
-    //   to: "/4",
+    //   to: "/settings",
     // },
   ];
+
   return (
-    <div className=" w-16 bg-primary flex flex-col justify-between gap-10 items-center py-5">
+    <div className="w-16 bg-primary flex flex-col justify-between gap-10 items-center py-5">
       <div className="flex flex-col gap-10">
-        <div className="text-primary text-lg font-extrabold bg-white p-2 rounded-medium w-10 h-10 flex items-center justify-center ">
+        <div className="text-primary text-lg font-extrabold bg-white p-2 rounded-medium w-10 h-10 flex items-center justify-center">
           <span className="pt-1">Fit</span>
         </div>
-        {/*// TODO: OPTIMIZE BUTTON CODE */}
         <div className="flex flex-col gap-8">
           {links.map((link) => (
             <NavLinkCard
@@ -57,7 +57,7 @@ const LeftNav = () => {
 
       <NavLinkCard
         icon={<IoLogOut className="text-2xl" />}
-        to="/logout"
+        to="/login"
         tooltip="Logout"
       />
     </div>
