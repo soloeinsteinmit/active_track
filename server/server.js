@@ -99,7 +99,10 @@ app.get("/api/vitals/:id", async (req, res) => {
   const userId = req.params.id;
 
   try {
-    const vitals = await db("vitals").select("*").where("id", userId);
+    const vitals = await db("vitals")
+      .select("*")
+      .where("id", userId)
+      .orderBy("datetime", "desc"); // Order by datetime in descending order
 
     if (vitals.length === 0) {
       return res.status(404).json({ error: "No vitals found for this user" });

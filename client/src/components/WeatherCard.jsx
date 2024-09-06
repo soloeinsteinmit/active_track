@@ -20,7 +20,7 @@ const WeatherCard = ({ location = "Location" }) => {
   const latitude = 5.116622; // Latitude
   const longitude = -1.290954; // Longitude
 
-  /*   useEffect(() => {
+  useEffect(() => {
     // Fetch weather data
     const fetchWeatherData = async () => {
       try {
@@ -33,13 +33,13 @@ const WeatherCard = ({ location = "Location" }) => {
         setLoading(false); // Stop loading
       } catch (error) {
         console.error("API Error:", error); // More detailed error logging
-        setError("Failed to fetch weather data. Please try again later."); 
+        setError("Failed to fetch weather data. Please try again later.");
         setLoading(false); // Stop loading even if there's an error
       }
     };
 
     fetchWeatherData(); // Call the function to fetch data when component mounts
-  }, []); */
+  }, []);
 
   if (loading) {
     return (

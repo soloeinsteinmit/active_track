@@ -9,24 +9,38 @@ import {
   Pagination,
   getKeyValue,
 } from "@nextui-org/react";
-import { fitnessData } from "../assets/data";
 import TopContent from "../components/TopContent";
 import { useSelector } from "react-redux";
 
 const PreviousData = () => {
   const userVitals = useSelector((state) => state.userVitals.vitalsInfo);
-  console.log("hgewvghesvhes", userVitals);
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 10;
 
-  const pages = Math.ceil(fitnessData.length / rowsPerPage);
+  // Format the data
+  const formattedData = userVitals.map((item) => {
+    const date = new Date(item.datetime);
+    const day = date.toLocaleDateString("en-US", { weekday: "long" });
+    const datePart = date.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "long",
+    });
+    const time = date.toLocaleTimeString("en-US", { hour12: false });
+
+    return {
+      ...item,
+      datetime: `${datePart}, ${day} ${time}`, // Format to "5 September, Monday 00:00:00"
+      temperature: item.temperature.toFixed(1), // Format temperature to 1 decimal place
+    };
+  });
+
+  const pages = Math.ceil(formattedData.length / rowsPerPage);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-
-    return fitnessData.slice(start, end);
-  }, [page, fitnessData]);
+    return formattedData.slice(start, end);
+  }, [page, formattedData]);
 
   return (
     <div className="max-w-[1000px] w-full mx-auto my-5 flex flex-col gap-5">
@@ -55,8 +69,8 @@ const PreviousData = () => {
         }}
       >
         <TableHeader>
-          <TableColumn key="dateTime">DAY, TIME</TableColumn>
-          <TableColumn key="heartBeat">HEART BEAT RATE (BPM)</TableColumn>
+          <TableColumn key="datetime">DAY, TIME</TableColumn>
+          <TableColumn key="heart_rate">HEART BEAT RATE (BPM)</TableColumn>
           <TableColumn key="spo2">SPO2 (%)</TableColumn>
           <TableColumn key="temperature">TEMPERATURE (°C)</TableColumn>
         </TableHeader>

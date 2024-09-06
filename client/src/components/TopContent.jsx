@@ -17,7 +17,7 @@ const TopContent = () => {
     <div className="flex justify-between w-full">
       <div className="flex flex-col">
         <p className="text-2xl font-bold">
-          Hello,{userInfo.name.split(" ")[0]}
+          Hello, {userInfo.name.split(" ")[0]}
         </p>
         <span className="text-small text-default-500 font-semibold">
           Lorem ipsum, dolor sit amet

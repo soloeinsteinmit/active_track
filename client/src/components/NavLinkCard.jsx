@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import "../css/nav_links.css";
 import { Tooltip } from "@nextui-org/react";
 
-function NavLinkCard({ icon, tooltip = "Name here...", to = "/" }) {
+function NavLinkCard({ icon, tooltip = "Name here...", to = "/", ...props }) {
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

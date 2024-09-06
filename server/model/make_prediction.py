@@ -28,12 +28,12 @@ model = load_model(model_path, custom_objects=custom_objects)
 # Generate random test data for 7 days
 np.random.seed(42)  # For reproducibility
 test_data_7_days = pd.DataFrame({
-    'hour': np.random.randint(0, 24, size=7),
-    'minute': np.random.randint(0, 60, size=7),
-    'day_of_week': np.random.randint(0, 7, size=7),
-    'heart_rate': np.random.randint(60, 90, size=7),
-    'spo2': np.random.uniform(90, 100, size=7),
-    'temperature': np.random.uniform(36.0, 37.5, size=7)
+    'hour': np.random.randint(0, 24, size=1),
+    'minute': np.random.randint(0, 60, size=1),
+    'day_of_week': np.random.randint(0, 7, size=1),
+    'heart_rate': np.random.randint(60, 90, size=1),
+    'spo2': np.random.uniform(90, 100, size=1),
+    'temperature': np.random.uniform(36.0, 37.5, size=1)
 }, columns=columns)
 
 # Display the test data
